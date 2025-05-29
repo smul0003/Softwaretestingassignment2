@@ -7,8 +7,8 @@ public class RaceStrategyOptimizer {
         double maxDistancePerTank = tankCapacity * fuelEfficiency;
         int pitStops = (int)Math.ceil(totalDistance / maxDistancePerTank) - 1;
 
-        // Estimate tyre wear
-        double tyreWearPerLap = car.tyre.getWearRate();
+        // Use getter instead of direct access
+        double tyreWearPerLap = car.getTyre().getWearRate();
         int tyreLifespan = (int)(1.0 / tyreWearPerLap);
 
         // Adjust for weather
@@ -22,7 +22,7 @@ public class RaceStrategyOptimizer {
         System.out.printf("Track: %.1fkm x %d laps (Total: %.1fkm)%n", trackLengthKm, laps, totalDistance);
         System.out.printf("Estimated Fuel Stops: %d%n", Math.max(0, pitStops));
         System.out.printf("Estimated Tyre Changes: %d (Tyre lifespan: ~%d laps)%n", Math.max(0, tyreChanges), tyreLifespan);
-        System.out.println("Recommended Tyre: " + car.tyre.getCompound());
+        System.out.println("Recommended Tyre: " + car.getTyre().getCompound());
         System.out.println("Weather: " + weather);
     }
 }

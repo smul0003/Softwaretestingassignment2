@@ -23,6 +23,9 @@ public class Car {
                 350
         );
     }
+    public Tyre getTyre() {
+        return tyre;
+    }
 
     public int getCorneringAbility() {
         return Math.min(10, (int)((aeroKit.getCorneringAbility() + tyre.getGrip()) / 2));
