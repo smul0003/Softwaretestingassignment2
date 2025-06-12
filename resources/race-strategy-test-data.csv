@@ -1,2 +1,13 @@
 Aerodynamic Kit,Engine,Tyre,Fuel Tank (L),Track Length (km),Laps,Weather,Expected Result
-1,1,1,1,1,1,dry,"--- Race Strategy ---\nTrack: 1.0km x 1 laps (Total: 1.0km)\nEstimated Fuel Stops: 0\nEstimated Tyre Changes: 0 (Tyre lifespan: ~14 laps)\nRecommended Tyre: Soft\nWeather: dry"
+1,1,1,1,1,1,dry,"--- Race Strategy ---\nTrack: 1.0km x 1 laps (Total: 1.0km)\nEstimated Fuel Stops: 0\nEstimated Tyre Changes: 0 (Tyre lifespan: ~20 laps)\nRecommended Tyre: Medium\nWeather: dry"
+8,2,1,15,21,62,dry, 
+5,3,1,47,31,25,dry, 
+7,2,3,63,83,20,wet, 
+4,1,2,14,27,18,dry, 
+2,1,1,55,49,76,dry, 
+9,2,1,69,33,90,wet, 
+1,3,2,29,91,31,wet, 
+3,1,3,19,61,47,dry, 
+6,2,2,38,99,60,wet, 
+8,1,1,72,45,80,dry, 
+
