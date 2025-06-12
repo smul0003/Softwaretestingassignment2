@@ -45,7 +45,11 @@ public class Main {
         String weather = scanner.nextLine();
 
         // Optimise Strategy
-        RaceStrategyOptimizer.generateStrategy(car, trackLength, laps, weather);
+        // Create an instance of RaceStrategyOptimizer
+        RaceStrategyOptimizer optimizer = new RaceStrategyOptimizer();
+
+        // Call the non-static method
+        optimizer.generateStrategy(car, trackLength, laps, weather);
 
         scanner.close();
     }
