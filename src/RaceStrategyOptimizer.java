@@ -10,32 +10,35 @@ public class RaceStrategyOptimizer {
     private String recommendedTyre;
     private String weather;
 
-    public void generateStrategy(Car car, double trackLengthKm, int laps, String weather) {
-        this.weather = weather;
-        this.totalDistance = trackLengthKm * laps;
-        this.fuelEfficiency = car.getTotalFuelEfficiency();
-        this.tankCapacity = car.getFuelTankCapacity();
+        public static String generateStrategy(Car car, double trackLength, int laps, String weather) {
+            double totalDistance = trackLength * laps;
+            double fuelEfficiency = car.getTotalFuelEfficiency();
+            int tankCapacity = car.getFuelTankCapacity();
+            double totalFuelRequired = totalDistance / fuelEfficiency;
+            int numberOfFuelStops = (int) Math.ceil(totalFuelRequired / tankCapacity);
 
-        this.maxDistancePerTank = tankCapacity * fuelEfficiency;
-        this.pitStops = (int)Math.ceil(totalDistance / maxDistancePerTank) - 1;
+            double tyreWearRate = car.getTyre().getWearRate();
+            int tyreDurability = (int) (100 / (tyreWearRate * 100));
+            int numberOfTyreChanges = (int) Math.ceil((double) laps / tyreDurability);
 
-        this.tyreWearPerLap = car.getTyre().getWearRate();
-        this.tyreLifespan = (int)(1.0 / tyreWearPerLap);
+            String recommendedTyreStrategy;
+            if (weather.equalsIgnoreCase("rainy")) {
+                recommendedTyreStrategy = "Wet Tyres Recommended";
+            } else if (weather.equalsIgnoreCase("hot")) {
+                recommendedTyreStrategy = "Hard Tyres Recommended";
+            } else {
+                recommendedTyreStrategy = "Medium Tyres Recommended";
+            }
 
-        if (weather.equalsIgnoreCase("wet")) {
-            this.tyreLifespan = (int)(tyreLifespan * 0.7);
+            return String.format(
+                    "FuelStops=%d, TyreChanges=%d, RecommendedTyre=%s, FuelRequired=%.2fL, Efficiency=%.2fkm/L",
+                    numberOfFuelStops,
+                    numberOfTyreChanges,
+                    recommendedTyreStrategy,
+                    totalFuelRequired,
+                    fuelEfficiency
+            );
         }
-
-        this.tyreChanges = (int)Math.ceil((double)laps / tyreLifespan) - 1;
-        this.recommendedTyre = car.getTyre().getCompound();
-
-        System.out.println("\n--- Race Strategy ---");
-        System.out.printf("Track: %.1fkm x %d laps (Total: %.1fkm)%n", trackLengthKm, laps, totalDistance);
-        System.out.printf("Estimated Fuel Stops: %d%n", Math.max(0, pitStops));
-        System.out.printf("Estimated Tyre Changes: %d (Tyre lifespan: ~%d laps)%n", Math.max(0, tyreChanges), tyreLifespan);
-        System.out.println("Recommended Tyre: " + recommendedTyre);
-        System.out.println("Weather: " + weather);
-    }
 
     // Getters and Setters
     public double getTotalDistance() {

@@ -6,8 +6,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AerodynamicKitTest {
-    List<AerodynamicKit> aeroKits = ComponentLibrary.getAeroKits();
+class AeroKitTest {
+    List<AeroKit> aeroKits = ComponentLibrary.getAeroKits();
     @ParameterizedTest
     @CsvSource({
             "0, Standard Kit",
