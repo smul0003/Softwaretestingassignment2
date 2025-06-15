@@ -36,6 +36,64 @@ class AeroKitTest {
 
         }
     }
+    @ParameterizedTest
+    @CsvSource({
+            "Standard Kit, 0.95, 5, 5, 5,5",
+            "Downforce-Focused Kit,0.90,9,10,4,2",
+            "Low-Drag Kit, 0.70, 3, 4, 10, 3",
+            "Adjustable Aero Kit, 0.85, 7, 7, 7, 9",
+            "Ground Effect Kit, 0.80, 10, 9, 7, 4",
+
+    })
+    @DisplayName("AerokitFactory Create test")
+    void create(String name, String dragCoefficient, String downforceRating, String corneringAbility, String straightLineSpeed, String flexibility) {
+        AeroKit kit = AeroKitFactory.create(name);
+
+        double drag = Double.parseDouble(dragCoefficient);
+        int downForce = Integer.parseInt(downforceRating);
+        int cornering = Integer.parseInt(corneringAbility);
+        int straight = Integer.parseInt(straightLineSpeed);
+        int flex = Integer.parseInt(flexibility);
+
+        assertAll(
+                () -> assertEquals(name, kit.getName()),
+                () -> assertEquals(drag, kit.getDragCoefficient()),
+                () -> assertEquals(downForce, kit.getDownforceRating()),
+                () -> assertEquals(cornering, kit.getCorneringAbility()),
+                () -> assertEquals(straight, kit.getStraightLineSpeed()),
+                () -> assertEquals(flex, kit.getFlexibility())
+        );
+
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "Standard Kit, 0.95, 5, 5, 5,5",
+            "Downforce-Focused Kit,0.90,9,10,4,2",
+            "Low-Drag Kit, 0.70, 3, 4, 10, 3",
+            "Adjustable Aero Kit, 0.85, 7, 7, 7, 9",
+            "Ground Effect Kit, 0.80, 10, 9, 7, 4",
+
+    })
+    @DisplayName("Aerokit Create test")
+    void AerokitInsertTest(String name, String dragCoefficient, String downforceRating, String corneringAbility, String straightLineSpeed, String flexibility) {
+
+
+        double drag = Double.parseDouble(dragCoefficient);
+        int downForce = Integer.parseInt(downforceRating);
+        int cornering = Integer.parseInt(corneringAbility);
+        int straight = Integer.parseInt(straightLineSpeed);
+        int flex = Integer.parseInt(flexibility);
+        AeroKit kit = new AeroKit(name, drag,downForce, cornering, straight, flex);
+        assertAll(
+                () -> assertEquals(name, kit.getName()),
+                () -> assertEquals(drag, kit.getDragCoefficient()),
+                () -> assertEquals(downForce, kit.getDownforceRating()),
+                () -> assertEquals(cornering, kit.getCorneringAbility()),
+                () -> assertEquals(straight, kit.getStraightLineSpeed()),
+                () -> assertEquals(flex, kit.getFlexibility())
+        );
+
+    }
 
     @ParameterizedTest
     @CsvSource({
