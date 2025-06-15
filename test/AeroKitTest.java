@@ -82,7 +82,7 @@ class AeroKitTest {
             "9, NA",
             "-4, NA"
     })
-    @DisplayName("DragCoefficient test")
+    @DisplayName("DownforceKG test")
     void getDownforceKg(String ind, String downForce) {
         int index = Integer.parseInt(ind);
 
@@ -93,39 +93,7 @@ class AeroKitTest {
         int dfKG = Integer.parseInt(downForce);
             assertAll(
                     () ->assertDoesNotThrow(() -> (aeroKits.get(index))),
-                    () ->assertEquals(dfKG, aeroKits.get(index).getDownforceKg())
-            );
-
-
-        }
-    }
-
-    @ParameterizedTest
-    @CsvSource({
-            "0, 250",
-            "1, 220",
-            "2, 280",
-            "3, 250",
-            "4, 240",
-            "5, 290",
-            "6, 230",
-            "7, 260",
-            "8, 200",
-            "9, NA",
-            "-4, NA"
-    })
-    @DisplayName("TopSpeed test")
-    void getTopSpeedKmh(String ind, String topSpeed) {
-        int index = Integer.parseInt(ind);
-
-        if(index>8 || index<0){
-            assertThrows(IndexOutOfBoundsException.class, () -> aeroKits.get(index));
-        }else{
-
-            int tS = Integer.parseInt(topSpeed);
-            assertAll(
-                    () ->assertDoesNotThrow(() -> (aeroKits.get(index))),
-                    () ->assertEquals(tS, aeroKits.get(index).getTopSpeedKmh())
+                    () ->assertEquals(dfKG, aeroKits.get(index).getDownforceRating())
             );
 
 
@@ -146,18 +114,80 @@ class AeroKitTest {
             "9, NA",
             "-4, NA"
     })
-    @DisplayName("FuelEfficiency test")
-    void getFuelEfficiencyKmpl(String ind, String fuelEfficiency) {
+    @DisplayName("StraightLineSpeed test")
+    void straightLine(String ind, String straightLine) {
         int index = Integer.parseInt(ind);
 
         if(index>8 || index<0){
             assertThrows(IndexOutOfBoundsException.class, () -> aeroKits.get(index));
         }else{
 
-            int fuelEff = Integer.parseInt(fuelEfficiency);
+            int tS = Integer.parseInt(straightLine);
             assertAll(
                     () ->assertDoesNotThrow(() -> (aeroKits.get(index))),
-                    () ->assertEquals(fuelEff, aeroKits.get(index).getFuelEfficiencyKmpl())
+                    () ->assertEquals(tS, aeroKits.get(index).getStraightLineSpeed())
+            );
+
+
+        }
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "0, 400",
+            "1, 285",
+            "2, 560",
+            "3, 387",
+            "4, 444",
+            "5, 520",
+            "6, 343",
+            "7, 413",
+            "8, 225",
+            "9, NA",
+            "-4, NA"
+    })
+    @DisplayName("TopSpeed test")
+    void topSpeed(String ind, String topSpeed) {
+        int index = Integer.parseInt(ind);
+
+        if(index>8 || index<0){
+            assertThrows(IndexOutOfBoundsException.class, () -> aeroKits.get(index));
+        }else{
+
+            int tS = Integer.parseInt(topSpeed);
+            assertAll(
+                    () ->assertDoesNotThrow(() -> (aeroKits.get(index))),
+                    () ->assertEquals(tS, aeroKits.get(index).getTopSpeedKmh())
+            );
+
+
+        }
+    }
+    @ParameterizedTest
+    @CsvSource({
+            "0, 50.0",
+            "1, 42.85714285714286",
+            "2, 60.0",
+            "3, 48.38709677419355",
+            "4, 55.55555555555555",
+            "5, 60.0",
+            "6, 46.875",
+            "7, 51.724137931034484",
+            "8, 37.5",
+            "9, NA",
+            "-4, NA"
+    })
+    @DisplayName("FuelEfficiency test")
+    void fuelEfficiency(String ind, String fuelEffiency) {
+        int index = Integer.parseInt(ind);
+
+        if(index>8 || index<0){
+            assertThrows(IndexOutOfBoundsException.class, () -> aeroKits.get(index));
+        }else{
+
+            double tS = Double.parseDouble(fuelEffiency);
+            assertAll(
+                    () ->assertDoesNotThrow(() -> (aeroKits.get(index))),
+                    () ->assertEquals(tS, aeroKits.get(index).getFuelEfficiencyKmpl())
             );
 
 
@@ -175,6 +205,38 @@ class AeroKitTest {
             "6, 7",
             "7, 7",
             "8, 10",
+            "9, NA",
+            "-4, NA"
+    })
+    @DisplayName("Flexibility test")
+    void getFlexibility(String ind, String flexibility) {
+        int index = Integer.parseInt(ind);
+
+        if(index>8 || index<0){
+            assertThrows(IndexOutOfBoundsException.class, () -> aeroKits.get(index));
+        }else{
+
+            int fuelEff = Integer.parseInt(flexibility);
+            assertAll(
+                    () ->assertDoesNotThrow(() -> (aeroKits.get(index))),
+                    () ->assertEquals(fuelEff, aeroKits.get(index).getFlexibility())
+            );
+
+
+        }
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0, 250",
+            "1, 220",
+            "2, 280",
+            "3, 250",
+            "4, 240",
+            "5, 290",
+            "6, 230",
+            "7, 260",
+            "8, 200",
             "9, NA",
             "-4, NA"
     })
@@ -198,15 +260,15 @@ class AeroKitTest {
 
     @ParameterizedTest
     @CsvSource({
-            "0, 'Standard Kit [Cd=0.3, Downforce=200kg, TopSpeed=250km/h, FuelEff=12km/l, Cornering=6]'",
-            "1, 'Downforce-Focussed Kit [Cd=0.35, Downforce=350kg, TopSpeed=220km/h, FuelEff=10km/l, Cornering=9]'",
-            "2, 'Low-Drag Kit [Cd=0.25, Downforce=150kg, TopSpeed=280km/h, FuelEff=14km/l, Cornering=5]'",
-            "3, 'Adjustable Aero Kit [Cd=0.31, Downforce=250kg, TopSpeed=250km/h, FuelEff=12km/l, Cornering=8]'",
-            "4, 'Ground Effect Kit [Cd=0.27, Downforce=400kg, TopSpeed=240km/h, FuelEff=12km/l, Cornering=8]'",
-            "5, 'Drag Reduction System Kit [Cd=0.25, Downforce=200kg, TopSpeed=290km/h, FuelEff=13km/l, Cornering=6]'",
-            "6, 'Wet Weather Kit [Cd=0.32, Downforce=220kg, TopSpeed=230km/h, FuelEff=11km/l, Cornering=7]'",
-            "7, 'Hybrid Kit [Cd=0.29, Downforce=260kg, TopSpeed=260km/h, FuelEff=12km/l, Cornering=7]'",
-            "8, 'Extreme Aero Kit [Cd=0.4, Downforce=500kg, TopSpeed=200km/h, FuelEff=9km/l, Cornering=10]'",
+            "0, 'Standard Kit: Drag=0.3, Downforce=200, Cornering=250, StraightLine=12, Flexibility=6'",
+            "1, 'Downforce-Focussed Kit: Drag=0.35, Downforce=350, Cornering=220, StraightLine=10, Flexibility=9'",
+            "2, 'Low-Drag Kit: Drag=0.25, Downforce=150, Cornering=280, StraightLine=14, Flexibility=5'",
+            "3, 'Adjustable Aero Kit: Drag=0.31, Downforce=250, Cornering=250, StraightLine=12, Flexibility=8'",
+            "4, 'Ground Effect Kit: Drag=0.27, Downforce=400, Cornering=240, StraightLine=12, Flexibility=8'",
+            "5, 'Drag Reduction System Kit: Drag=0.25, Downforce=200, Cornering=290, StraightLine=13, Flexibility=6'",
+            "6, 'Wet Weather Kit: Drag=0.32, Downforce=220, Cornering=230, StraightLine=11, Flexibility=7'",
+            "7, 'Hybrid Kit: Drag=0.29, Downforce=260, Cornering=260, StraightLine=12, Flexibility=7'",
+            "8, 'Extreme Aero Kit: Drag=0.4, Downforce=500, Cornering=200, StraightLine=9, Flexibility=10'",
             "9, NA",
             "-4, NA"
     })
@@ -225,4 +287,5 @@ class AeroKitTest {
 
         }
     }
+
 }

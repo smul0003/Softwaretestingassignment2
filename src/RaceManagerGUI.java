@@ -63,7 +63,7 @@ public class RaceManagerGUI extends JFrame {
 
         // Button Actions
         customiseBtn.addActionListener(e -> customiseCar());
-        strategyBtn.addActionListener(e -> generateStrategy());
+        //strategyBtn.addActionListener(e -> generateStrategy());
     }
 
     private Car currentCar;
