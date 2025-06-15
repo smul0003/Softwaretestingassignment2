@@ -330,7 +330,7 @@ class AeroKitTest {
             "9, NA",
             "-4, NA"
     })
-    @DisplayName("toString test")
+    @DisplayName("AeroKit toString test")
     void testToString(String ind, String expected) {
         int index = Integer.parseInt(ind);
         if(index>8 || index<0){

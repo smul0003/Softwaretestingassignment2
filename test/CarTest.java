@@ -150,7 +150,7 @@ class CarTest {
             "Standard, Hard, Low-Drag Kit, 125, 7.5, Standard, Hard, Low-Drag Kit, 125, 142, 22.50, 6.25",
             "notAnEngine, notATyre, Adjustable Aero Kit, 150, 6.0, Standard, Medium, Adjustable Aero Kit, 150, 82, 17.65, 6.50",
             "Hybrid, Hard, Ground Effect Kit, 50, 8.0, Hybrid, Hard, Ground Effect Kit, 50, 108, 21.66, 7.50"})
-    @DisplayName("To String Test")
+    @DisplayName("Car To String Test")
     void testToString(String engineType, String tyreType, String aeroKitType, int fuelTankCapacity, double baseHandling, String s1, String s2, String s3, String s4, String s5, String s6, String s7) {
         Engine engine = EngineFactory.create(engineType);
         Tyre tyre = TyreFactory.create(tyreType);
