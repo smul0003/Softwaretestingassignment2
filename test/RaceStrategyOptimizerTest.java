@@ -2,10 +2,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertAll;
-
 class RaceStrategyOptimizerTest {
 
     @ParameterizedTest

@@ -1,8 +1,6 @@
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+
 
 public class RaceManagerGUI extends JFrame {
 
@@ -20,10 +18,15 @@ public class RaceManagerGUI extends JFrame {
         // NORTH PANEL – Form Inputs
         JPanel inputPanel = new JPanel(new GridLayout(6, 2, 10, 10));
         engineBox = new JComboBox<>(new String[]{"Standard", "Turbocharged", "Hybrid"});
+        engineBox.setName("engineBox");
         tyreBox = new JComboBox<>(new String[]{"Soft", "Medium", "Hard"});
+        tyreBox.setName("tyreBox");
         aeroBox = new JComboBox<>(new String[]{
                 "Standard Kit", "Downforce-Focused Kit", "Low-Drag Kit", "Adjustable Aero Kit"
         });
+        aeroBox.setName("aeroBox");
+
+
         weatherBox = new JComboBox<>(new String[]{"Clear", "Wet"});
 
         trackLengthField = new JTextField("5.0");
@@ -73,7 +76,7 @@ public class RaceManagerGUI extends JFrame {
         Tyre tyre = TyreFactory.create(tyreBox.getSelectedItem().toString());
         AeroKit aeroKit = AeroKitFactory.create(aeroBox.getSelectedItem().toString());
         currentCar = new Car(engine, tyre, aeroKit, 100, 7.0);
-
+        outputArea.setName("outputArea");
         outputArea.setText("Car Customised:\n" + currentCar.toString());
     }
 

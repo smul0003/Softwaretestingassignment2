@@ -15,19 +15,4 @@ public class ComponentLibrary {
         return list;
     }
 
-    public static List<Engine> getEngines() {
-        return Arrays.asList(
-                new Engine("Standard", 200, 1.0, 6),
-                new Engine("Turbocharged", 300, 0.9, 8),
-                new Engine("Hybrid", 250, 1.1, 7)
-        );
-    }
-
-    public static List<Tyre> getTyres() {
-        return Arrays.asList(
-                new Tyre("Soft", 0.07, 9, 0.95),
-                new Tyre("Medium", 0.05, 7, 1.0),
-                new Tyre("Hard", 0.03, 6, 1.05)
-        );
-    }
 }

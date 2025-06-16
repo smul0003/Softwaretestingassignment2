@@ -1,14 +1,9 @@
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarTest {
-
-
     @ParameterizedTest
     @CsvSource({"Turbocharged, Medium, Hybrid Kit, 100, 7.0, 14.210526315789474",
                 "Hybrid, Soft, Downforce-Focused Kit, 75, 6.5, 17.416666666666668",
