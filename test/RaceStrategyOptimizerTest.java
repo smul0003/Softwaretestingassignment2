@@ -1,22 +1,24 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class RaceStrategyOptimizerTest {
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/race-strategy-test-data.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/race-strategy-test-data.csv", numLinesToSkip = 1, delimiter =';')
     @DisplayName("Checks posibilities with expected answers")
-    void generateStrategy(int kit, int engine, int tyre, int fuelTank, int trackLength, int laps, String weather, String expected) {
-        List<AeroKit> aeroKits = ComponentLibrary.getAeroKits();
-        List<Engine> engines = ComponentLibrary.getEngines();
-        List<Tyre> tyres = ComponentLibrary.getTyres();
-        //Car car = new Car(engines.get(engine-1), tyres.get(tyre-1), aeroKits.get(kit-1), fuelTank);
-        //RaceStrategyOptimizer.generateStrategy(car, trackLength, laps, weather);
-        System.out.println(expected);
-        //RaceStrategyOptimizer doesnt return anything so its hard to compare, chatgpt can be prompted to have a toString()
-        //returned instead so its easier to use assertEquals
+    void generateStrategy(String Engine, String Tyre, String aerokit, int fuel, double base, double track, int laps, String weather, String expected) {
+        Engine engine = EngineFactory.create(Engine);
+        Tyre tyre = TyreFactory.create(Tyre);
+        AeroKit aeroKit = AeroKitFactory.create(aerokit);
+
+        Car car = new Car(engine, tyre,aeroKit,fuel,base);
+        String strategy = RaceStrategyOptimizer.generateStrategy(car, track, laps, weather);
+        assertEquals(expected, strategy);
+
     }
 }
